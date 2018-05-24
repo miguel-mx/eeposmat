@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="py-5 text-center">
+        <h4>{{ evento }}</h4>
+        <h6>29 de agosto al 02 de septiembre 2018</h6>
+        <h5 class="mt-4">CENTRO DE CIENCIAS MATEMATICAS - UNAM</h5>
+    </div>
+
+    <p class="col-md-10 col-sm-12">
+        <h3 class="text-center text-secondary mb-4">Formulario de registro</h3>
+        {{ form_start(form) }}
+
+        <h4 class="text-secondary border-bottom my-4 pb-2">Información personal</h4>
+        <div class="row">
+            <div class="form-group col-md-4 col-sm-12">
+                <label for="inputNombre">Nombre</label>
+                {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col-md-4 col-sm-12">
+                <label for="inputPaterno">Apellido paterno</label>
+                {{ form_widget(form.apaterno, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col-md-4 col-sm-12">
+                <label for="inputMaterno">Apellido materno</label>
+                {{ form_widget(form.amaterno, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.sexo) }}
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                {{ form_widget(form.sexo, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                {{ form_label(form.ciudad) }}
+                {{ form_widget(form.ciudad, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                {{ form_label(form.estado) }}
+                {{ form_widget(form.estado, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                {{ form_label(form.telefono) }}
+                {{ form_widget(form.telefono, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <h4 class="text-secondary border-bottom my-4 pb-2">Información académica</h4>
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                {{ form_label(form.universidad) }}
+                {{ form_widget(form.universidad, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col-md-4 col-sm-12">
+                {{ form_label(form.estatus) }}
+                {{ form_widget(form.estatus, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col-md-2 col-sm-12">
+                {{ form_label(form.semestre) }}
+                {{ form_widget(form.semestre, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="form-check mb-3">
+            {{ form_widget(form.toggleTalk, {'attr': {'class': 'form-check-input'}}) }}
+            <label class="form-check-label lead" for="appbundle_registration_toggleTalk">Me gustaría proponer una plática.</label>
+        </div>
+        <div class="collapse" id="collapseTalk">
+            <div class="form-group">
+                {{ form_label(form.titulo) }}
+                {{ form_widget(form.titulo, {'attr': {'class': 'form-control', 'disabled':'disabled'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.abstract) }}
+                {{ form_widget(form.abstract, {'attr': {'class': 'form-control', 'rows':'6', 'disabled':'disabled'}}) }}
+            </div>
+        </div>
+        <h4 class="text-secondary border-bottom my-4 pb-2">Beca</h4>
+         <div class="form-check mb-3">
+            {{ form_widget(form.beca, {'attr': {'class': 'form-check-input'}}) }}
+            <label class="form-check-label lead" for="appbundle_registration_toggleTalk">Solicito beca.</label>
+        </div>
+
+        <div class="collapse" id="collapseBeca">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <p class="card-text">La beca consiste en apoyo de hospedaje.<br>
+                        En caso de solicitar apoyo es necesario dar el nombre y correo electrónico de un profesor a quien le solicitaremos una recomendación.</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="form-group col-md-6 col-sm-12">
+                    {{ form_label(form.nombreProfesor) }}
+                    {{ form_widget(form.nombreProfesor, {'attr': {'class': 'form-control', 'disabled':'disabled'}}) }}
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    {{ form_label(form.emailProfesor) }}
+                    {{ form_widget(form.emailProfesor, {'attr': {'class': 'form-control', 'disabled':'disabled'}}) }}
+                </div>
+            </div>
+        </div>
+
+        <h4 class="text-secondary border-bottom my-4 pb-2">Contacto de emergencia</h4>
+        <div class="row mt-4">
+            <div class="form-group col-md-6 col-sm-12">
+                {{ form_label(form.nombreEmergencia) }}
+                {{ form_widget(form.nombreEmergencia, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                {{ form_label(form.telEmergencia) }}
+                {{ form_widget(form.telEmergencia, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        {{ form_widget(form) }}
+
+        <input class="btn btn-success my-5" type="submit" value="Enviar" />
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('#appbundle_registro_toggleTalk').click(function () {
+            //check if checkbox is checked
+            if ($(this).is(':checked')) {
+                $('#appbundle_registro_titulo').removeAttr('disabled');
+                $('#appbundle_registro_abstract').removeAttr('disabled');
+                $('#collapseTalk').collapse("show");
+            } else {
+                $('#appbundle_registro_titulo').attr('disabled', true);
+                $('#appbundle_registro_abstract').attr('disabled', true);
+                $('#collapseTalk').collapse("hide");
+            }
+        });
+    </script>
+    <script>
+        $('#appbundle_registro_beca').click(function () {
+            //check if checkbox is checked
+            if ($(this).is(':checked')) {
+                $('#appbundle_registro_nombreProfesor').removeAttr('disabled');
+                $('#appbundle_registro_emailProfesor').removeAttr('disabled');
+                $('#collapseBeca').collapse("show");
+            } else {
+                $('#appbundle_registro_nombreProfesor').attr('disabled', true);
+                $('#appbundle_registro_emailProfesor').attr('disabled', true);
+                $('#collapseBeca').collapse("hide");
+            }
+        });
+    </script>
+{% endblock %}

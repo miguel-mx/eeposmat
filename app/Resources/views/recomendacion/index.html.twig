@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Recomendacions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Recomendacion</th>
+                <th>Createdat</th>
+                <th>Registro</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recomendacion in recomendacions %}
+            <tr>
+                <td><a href="{{ path('recomendacion_show', { 'id': recomendacion.id }) }}">{{ recomendacion.id }}</a></td>
+                <td>{{ recomendacion.recomendacion }}</td>
+                <td>{% if recomendacion.createdAt %}{{ recomendacion.createdAt|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ recomendacion.registro }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('recomendacion_show', { 'id': recomendacion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('recomendacion_edit', { 'id': recomendacion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('recomendacion_new') }}">Create a new recomendacion</a>
+        </li>
+    </ul>
+{% endblock %}

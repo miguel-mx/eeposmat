@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2 class="text-secondary my-5">{{ evento }} 2018</h2>
+
+    <p class="lead text-secondary ">Apreciado(a) <strong>{{ registro.nombreProfesor }}</strong>.</p>
+
+    <p class="lead text-secondary ">El(la) estudiante <strong>{{ registro.nombre }} {{ registro.apaterno }} {{ registro.amaterno }}</strong> solicitó Beca de alimentos y hospedaje para el Encuentro Nacional de Estudiantes de Posgrado 2018 y lo(la) mencionó a usted como una posible referencia. Agradeceremos que nos conceda un poco de su tiempo para escribir una recomendación en el siguiente campo de texto:</p>
+
+    {{ form_start(form) }}
+
+        <div class="form-group">
+            <span class="text-danger">{{ form_errors(form.recomendacion) }}</span>
+            {{ form_widget(form.recomendacion, {'attr': {'class': 'form-control', 'rows':'12'}}) }}
+        </div>
+
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-success my-5" value="Enviar" />
+
+    {{ form_end(form) }}
+
+{% endblock %}

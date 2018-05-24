@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <h3 class="text-secondary my-5">Recomendación para {{ registro.nombre }} {{ registro.apaterno }} {{ registro.amaterno }}</h3>
+    <p class="lead">{{ registro.recomendacion.recomendacion }}</p>
+
+{% endblock %}

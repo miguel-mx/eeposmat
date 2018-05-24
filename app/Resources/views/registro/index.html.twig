@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/datatables.min.css"/>
+{% endblock %}
+
+{% block body %}
+</div>
+
+<div class="container-fluid">
+<h4 class="my-4 text-secondary">Lista de registros</h4>
+
+<button type="button" class="btn btn-info mb-4" data-toggle="modal" data-target="#emailsModal">
+        <i class="fa fa-envelope"></i> Correos electrónicos
+</button>
+
+
+<table id="registry" class="table table-sm table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Universidad</th>
+                <th>Estado</th>
+                <th>Beca</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registro in registros %}
+            <tr>
+                <td><a href="{{ path('registro_show', { 'slug': registro.slug }) }}">{{ registro.nombre }} {{ registro.apaterno}} {{ registro.amaterno }}</a></td>
+                <td>{{ registro.email }}</td>
+                <td>{{ registro.universidad }}</td>
+                <td>{{ registro.estado }}</td>
+                <td>{% if  registro.beca %}Beca{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/b-html5-1.5.1/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#registry').DataTable({
+            } );
+        } );
+    </script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{{ evento }}
+
+Apreciado(a) {{ registro.apaterno|title }} {{ registro.amaterno|title }} {{ registro.nombre}},
+
+Gracias por indicar su interés al Encuentro Nacional de Estudiantes de Posgrado,
+que se llevará a cabo a finales de Agosto de 2018.
+
+Recibimos los siguientes datos en su registro:
+
+Correo electrónico: {{ registro.email }}
+
+Ciudad: {{ registro.ciudad }}
+
+Estado: {{ registro.estado }}
+
+Teléfono: {{ registro.telefono }}
+
+Institución: {{ registro.universidad }}
+
+Estatus: {{ registro.estatus }}
+
+{% if registro.beca %}
+Solicito beca
+
+Datos de recomendación:
+-----------------------
+
+Nombre del profesor: {{ registro.nombreProfesor}}
+
+Email del profesor: {{ registro.emailProfesor}}
+
+La fecha límite para enviar la recomendación es el 8 de Junio del 2018.
+
+{% else %}
+No solicito beca
+{% endif %}
+
+{% if registro.titulo %}
+
+{{ registro.titulo }}
+
+{{ registro.abstract }}
+
+{% endif %}
+
+Datos de emergencia:
+--------------------
+
+Nombre: {{ registro.nombreEmergencia }}
+
+Teléfono: {{ registro.telEmergencia }}
+
+
+Esperamos verlo pronto.
+
+Saludos cordiales,
+
+Comité organizador.
