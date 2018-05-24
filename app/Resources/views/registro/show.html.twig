@@ -2,32 +2,30 @@
 
 {% block body %}
 
+    <a class="btn btn-outline-primary mt-5" href="{{ path('registro_index') }}">Regresar a la lista</a>
+
     <h3 class="text-secondary my-5">{{ registro.nombre }} {{ registro.apaterno}} {{ registro.amaterno }} <small>{{ registro.email }}</small></h3>
-
-
 
     <div class="row">
         <div class="col">
             <h5 class="text-secondary">Datos personales</h5>
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text">Ciudad</p>
-                            <p class="lead">{{ registro.ciudad }}</p>
-                            <h5 class="card-title">Estado</h5>
-                            <p class="card-text">{{ registro.estado }}</p>
-                            {#<ul class="list-group list-group-flush">#}
-                                {#<li class="list-group-item">Ciudad: {{ registro.ciudad }}</li>#}
-                                {#<li class="list-group-item">Estado: {{ registro.estado }}</li>#}
-                            {#</ul>#}
-                        </div>
-                        <div class="col">
-                            {#<ul class="list-group list-group-flush">#}
-                                {#<li class="list-group-item">Teléfono: {{ registro.telefono }}</li>#}
-                                {#<li class="list-group-item">Sexo: {{ registro.sexo }}</li>#}
-                            {#</ul>#}
-                        </div>
+                    <div class="row mb-2">
+                        <div class="col-md-3 text-muted">Ciudad:</div>
+                        <div class="col-md-9">{{ registro.ciudad }}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-3 text-muted">Estado:</div>
+                        <div class="col-md-9">{{ registro.estado }}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-3 text-muted">Teléfono:</div>
+                        <div class="col-md-9">{{ registro.telefono }}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-3 text-muted">Sexo:</div>
+                        <div class="col-md-9">{{ registro.sexo }}</div>
                     </div>
                 </div>
             </div>
@@ -36,76 +34,65 @@
             <h5 class="text-secondary">Datos académicos</h5>
             <div class="card">
                 <div class="card-body">
-
-                            <ul class="list-group list-group-flush">
-
-                                <li class="list-group-item">Universidad: {{ registro.universidad }}</li>
-                                <li class="list-group-item">Estatus: {{ registro.estatus }}</li>
-                            </ul>
+                    <div class="row mb-2">
+                        <div class="col-md-3 text-muted">Universidad:</div>
+                        <div class="col-md-9">{{ registro.universidad }}</div>
                     </div>
+                    <div class="row mb-2 boder">
+                        <div class="col-md-3 text-muted">Estatus:</div>
+                        <div class="col-md-9">{{ registro.estatus }}</div>
+                    </div>
+                    {% if registro.beca %}
+                    <div class="row my-2 pt-2 border-top">
+                        <div class="col-md-3 text-muted">Beca:</div>
+                        <div class="col-md-9">Solicito beca</div>
+                    </div>
+                    {% else %}
+                        <div class="row my-2 pt-2 border-top">
+                            <div class="col-md-3 text-muted">Beca:</div>
+                            <div class="col-md-9">No</div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 
-            <tr>
-                <th>Email</th>
-                <td>{{ registro.email }}</td>
-            </tr>
-            <tr>
-                <th>Estatus</th>
-                <td>{{ registro.estatus }}</td>
-            </tr>
-            <tr>
-                <th>Universidad</th>
-                <td>{{ registro.universidad }}</td>
-            </tr>
-            <tr>
-                <th>Beca</th>
-                <td>{% if registro.beca %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Nombreprofesor</th>
-                <td>{{ registro.nombreProfesor }}</td>
-            </tr>
-            <tr>
-                <th>Emailprofesor</th>
-                <td>{{ registro.emailProfesor }}</td>
-            </tr>
-            <tr>
-                <th>Semestre</th>
-                <td>{{ registro.semestre }}</td>
-            </tr>
-            <tr>
-                <th>Nombreemergencia</th>
-                <td>{{ registro.nombreEmergencia }}</td>
-            </tr>
-            <tr>
-                <th>Telemergencia</th>
-                <td>{{ registro.telEmergencia }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ registro.slug }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if registro.createdAt %}{{ registro.createdAt|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+    {% if registro.beca %}
+        <h5 class="text-secondary mt-4">Recomendación</h5>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-md-3 text-muted">Nombre del profesor:</div>
+                    <div class="col-md-9">{{ registro.nombreProfesor }}</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-3 text-muted">Correo electrónico:</div>
+                    <div class="col-md-9">{{ registro.emailProfesor }}</div>
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('registro_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('registro_edit', { 'slug': registro.slug }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                {% if registro.recomendacion %}
+                    <div class="row my-4">
+                        <div class="col">
+                            <p class="text-muted">{{ registro.recomendacion.recomendacion }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    <h5 class="text-secondary mt-4">Datos de emergencia</h5>
+    <!-- Emergencia -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-3 text-muted">Contacto de emergencia:</div>
+                <div class="col-md-3">{{ registro.nombreEmergencia }}</div>
+                <div class="col-md-3 text-muted">Teléfono de emergencia:</div>
+                <div class="col-md-3">{{ registro.telEmergencia }}</div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
