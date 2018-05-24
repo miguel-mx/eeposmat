@@ -53,7 +53,7 @@ class RegistroController extends Controller
             $mailer = $this->container->get('mailer');
             $message = \Swift_Message::newInstance()
                 ->setSubject('Registro - Encuentro Nacional de Estudiantes de Posgrado en Matemáticas 2018')
-                ->setFrom('webmaster@matmor.unam.mx')
+                ->setFrom('eeposmat@matmor.unam.mx')
                 ->setTo(array($registro->getEmail()))
                 ->setBcc(array('miguel@matmor.unam.mx'))
                 ->setBody($this->container->get('templating')->render('registro/confirmacion-email.txt.twig', array('registro' => $registro)))
@@ -66,7 +66,7 @@ class RegistroController extends Controller
                 // Envía correo de solicitud de recomendación 1
                 $message = \Swift_Message::newInstance()
                     ->setSubject($subject)
-                    ->setFrom('webmaster@matmor.unam.mx')
+                    ->setFrom('eeposmat@matmor.unam.mx')
                     ->setTo(array($registro->getEmailProfesor()))
                     ->setBcc(array('miguel@matmor.unam.mx'))
                     ->setBody($this->renderView('registro/solicitud-recomendacion.txt.twig', array(
@@ -77,7 +77,6 @@ class RegistroController extends Controller
             }
 
             return $this->render('registro/confirmacion.html.twig');
-
         }
 
         return $this->render('registro/new.html.twig', array(
