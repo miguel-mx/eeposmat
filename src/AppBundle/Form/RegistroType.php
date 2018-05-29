@@ -26,7 +26,9 @@ class RegistroType extends AbstractType
             ))
             ->add('ciudad')
             ->add('estado')
-            ->add('telefono')
+            ->add('telefono', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+                'label' => 'Teléfono'
+            ))
             ->add('email')
             ->add('universidad')
             ->add('estatus','Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
@@ -63,8 +65,12 @@ class RegistroType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ))
-            ->add('titulo')
-            ->add('abstract')
+            ->add('titulo', 'Symfony\Component\Form\Extension\Core\Type\TextType',  array(
+                'label' => 'Título'
+            ))
+            ->add('abstract', 'Symfony\Component\Form\Extension\Core\Type\TextareaType',  array(
+                'label' => 'Resumen'
+            ))
              ->add('beca', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
                 'required' => false,
             ))
