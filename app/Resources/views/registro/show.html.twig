@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col">
-            <h5 class="text-secondary">Datos personales</h5>
+            <h5 class="text-secondary"><i class="fa fa-user"></i> Datos personales</h5>
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col">
-            <h5 class="text-secondary">Datos académicos</h5>
+            <h5 class="text-secondary"><i class="fa fa-graduation-cap"></i> Datos académicos</h5>
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
@@ -59,7 +59,19 @@
     </div>
 
     {% if registro.beca %}
-        <h5 class="text-secondary mt-4">Recomendación</h5>
+        <h5 class="text-secondary mt-4"><i class="fa fa-archive"></i> Documentos</h5>
+        <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-2 text-muted">
+                <div class="col-md-4"><a href="{{ vich_uploader_asset(registro, 'credencialFile') }}"><i class="fa fa-file"></i> Credencial</a></div>
+                <div class="col-md-4"><a href="{{ vich_uploader_asset(registro, 'historialFile') }}"><i class="fa fa-file"></i> Historial</a></div>
+                <div class="col-md-4"><a href="{{ vich_uploader_asset(registro, 'formatoFile') }}"><i class="fa fa-file"></i> Formato</a></div>
+            </div>
+        </div>
+    </div>
+
+
+        <h5 class="text-secondary mt-4"><i class="fa fa-check"></i> Recomendación</h5>
         <div class="card mb-4">
             <div class="card-body">
                 <div class="row mb-2">
@@ -82,7 +94,7 @@
         </div>
     {% endif %}
 
-    <h5 class="text-secondary mt-4">Datos de emergencia</h5>
+    <h5 class="text-secondary mt-4"><i class="fa fa-stethoscope"></i> Datos de emergencia</h5>
     <!-- Emergencia -->
     <div class="card mb-4">
         <div class="card-body">

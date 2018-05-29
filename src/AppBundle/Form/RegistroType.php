@@ -50,6 +50,15 @@ class RegistroType extends AbstractType
                 ),
                 'choices_as_values' => true,
             ))
+            ->add('credencialFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
+                'required' => false,
+            ))
+            ->add('historialFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
+                'required' => false,
+            ))
+            ->add('formatoFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
+                'required' => false,
+            ))
             ->add('toggleTalk', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
                 'mapped' => false,
                 'required' => false,

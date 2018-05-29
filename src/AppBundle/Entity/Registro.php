@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Registro
@@ -12,6 +14,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="registro")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RegistroRepository")
+ * @Vich\Uploadable
+ *
  */
 class Registro
 {
@@ -166,6 +170,68 @@ class Registro
      * @ORM\Column(name="telEmergencia", type="string", length=180)
      */
     private $telEmergencia;
+
+
+    /**
+     * @Vich\UploadableField(mapping="credencial", fileNameProperty="credencialName", nullable=true)
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF, no mayor a 2Mb"
+     * )
+     *
+     * @var File
+     */
+    private $credencialFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $credencialName;
+
+    /**
+     * @Vich\UploadableField(mapping="historial", fileNameProperty="historialName", nullable=true)
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF, no mayor a 2Mb"
+     * )
+     *
+     * @var File
+     */
+    private $historialFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $historialName;
+
+    /**
+     * @Vich\UploadableField(mapping="formato", fileNameProperty="formatoName", nullable=true)
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF, no mayor a 2Mb"
+     * )
+     *
+     * @var File
+     */
+    private $formatoFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $formatoName;
+
 
     /**
      * @var string
@@ -697,6 +763,142 @@ class Registro
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
+    }
+
+    // Archivos Upload
+
+    /**
+     * @return File|null
+     */
+    public function getCredencialFile()
+    {
+        return $this->credencialFile;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return Registro
+     */
+    public function setCredencialFile(File $file = null)
+    {
+        $this->credencialFile = $file;
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->createdAt = new \DateTime();
+        }
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCredencialName()
+    {
+        return $this->credencialName;
+    }
+
+    /**
+     * @param string $credencialName
+     * @return Registro
+     */
+    public function setCredencialName($credencialName)
+    {
+        $this->credencialName = $credencialName;
+
+        return $this;
+    }
+
+    // Historial
+    /**
+     * @return File|null
+     */
+    public function getHistorialFile()
+    {
+        return $this->historialFile;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return Registro
+     */
+    public function setHistorialFile(File $file = null)
+    {
+        $this->historialFile = $file;
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->createdAt = new \DateTime();
+        }
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getHistorialName()
+    {
+        return $this->historialName;
+    }
+
+    /**
+     * @param string $historialName
+     * @return Registro
+     */
+    public function setHistorialName($historialName)
+    {
+        $this->historialName = $historialName;
+
+        return $this;
+    }
+
+    // Formato
+    /**
+     * @return File|null
+     */
+    public function getFormatoFile()
+    {
+        return $this->formatoFile;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return Registro
+     */
+    public function setFormatoFile(File $file = null)
+    {
+        $this->formatoFile = $file;
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->createdAt = new \DateTime();
+        }
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFormatoName()
+    {
+        return $this->formatoName;
+    }
+
+    /**
+     * @param string $formatoName
+     * @return Registro
+     */
+    public function setFormatoName($formatoName)
+    {
+        $this->formatoName = $formatoName;
+
+        return $this;
     }
 }
 

@@ -29,6 +29,7 @@ app/config/parameters.ini
 
 # Assets and user uploads
 /web/bundles/
+/web/documentos/
 
 # Assets managed by Bower
 /web/assets/vendor/

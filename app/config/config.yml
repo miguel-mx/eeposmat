@@ -87,3 +87,19 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        credencial:
+            uri_prefix:         /eeposmat/web/documentos
+            upload_destination: '%kernel.root_dir%/../web/documentos/'
+            namer: vich_uploader.namer_uniqid
+        historial:
+            uri_prefix:         /eeposmat/web/documentos
+            upload_destination: '%kernel.root_dir%/../web/documentos/'
+            namer: vich_uploader.namer_uniqid
+        formato:
+            uri_prefix:         /eeposmat/web/documentos
+            upload_destination: '%kernel.root_dir%/../web/documentos/'
+            namer: vich_uploader.namer_uniqid
