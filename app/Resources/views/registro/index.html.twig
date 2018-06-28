@@ -24,6 +24,7 @@
                 <th>Universidad</th>
                 <th>Estado</th>
                 <th>Beca</th>
+                <th>Título</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
                 <td>{{ registro.universidad }}</td>
                 <td>{{ registro.estado }}</td>
                 <td>{% if  registro.beca %}Beca{% endif %}</td>
+                <td>{{ registro.titulo }}</td>
             </tr>
         {% endfor %}
         </tbody>

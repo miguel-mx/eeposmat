@@ -94,6 +94,16 @@
         </div>
     {% endif %}
 
+    {% if registro.titulo %}
+    <h5 class="text-secondary mt-4"><i class="fa fa-microphone"></i> Plática</h5>
+    <div class="card mb-4">
+        <div class="card-body">
+        <p class="lead text-secondary">{{ registro.titulo }}</p>
+        <p class="my-4 text-secondary">{{ registro.abstract }}</p>
+        </div>
+    </div>
+    {% endif %}
+
     <h5 class="text-secondary mt-4"><i class="fa fa-stethoscope"></i> Datos de emergencia</h5>
     <!-- Emergencia -->
     <div class="card mb-4">
