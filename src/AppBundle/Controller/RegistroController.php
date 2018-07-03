@@ -125,7 +125,7 @@ class RegistroController extends Controller
             'ponentes' => $ponentes,
         ));
     }
-    
+
     /**
      * Displays a form to edit an existing registro entity.
      *
