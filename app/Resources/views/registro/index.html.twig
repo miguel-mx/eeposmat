@@ -11,10 +11,11 @@
 <div class="container-fluid">
 <h4 class="my-4 text-secondary">Lista de registros</h4>
 
-<button type="button" class="btn btn-info mb-4" data-toggle="modal" data-target="#emailsModal">
+<button type="button" class="btn btn-outline-info mb-4" data-toggle="modal" data-target="#emailsModal">
         <i class="fa fa-envelope"></i> Correos electrónicos
 </button>
 
+<a class="btn btn-outline-info mb-4" href="{{ path('registro_platicas') }}" role="button"><i class="fa fa-microphone"></i> Resúmenes</a>
 
 <table id="registry" class="table table-sm table-striped table-bordered" cellspacing="0" width="100%">
       <thead>

@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class RegistroRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findAllPlaticas() {
+
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT r FROM AppBundle:Registro r WHERE r.titulo IS NOT NULL ORDER BY r.nombre ASC'
+            )
+            ->getResult();
+    }
+
 }

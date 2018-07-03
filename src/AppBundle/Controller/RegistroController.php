@@ -41,6 +41,13 @@ class RegistroController extends Controller
      */
     public function newAction(Request $request)
     {
+
+        // TODO: Especificar fecha límite
+        $now = new \DateTime();
+        $deadline = new \DateTime('2018-06-30');
+        if($now >= $deadline)
+            return $this->render(':registro:closed.html.twig');
+
         $registro = new Registro();
         $form = $this->createForm('AppBundle\Form\RegistroType', $registro);
         $form->handleRequest($request);
@@ -103,6 +110,22 @@ class RegistroController extends Controller
         ));
     }
 
+    /**
+     * Platicas
+     *
+     * @Route("/platicas/", name="registro_platicas")
+     * @Method("GET")
+     */
+    public function platicasAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $ponentes = $em->getRepository('AppBundle:Registro')->findAllPlaticas();
+
+        return $this->render('registro/platicas.html.twig', array(
+            'ponentes' => $ponentes,
+        ));
+    }
+    
     /**
      * Displays a form to edit an existing registro entity.
      *
