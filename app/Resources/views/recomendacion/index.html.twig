@@ -1,43 +1,73 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Recomendacions list</h1>
+    <h3 class="text-muted mt-4">Recomendaciones</h3>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Recomendacion</th>
-                <th>Createdat</th>
-                <th>Registro</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recomendacion in recomendacions %}
-            <tr>
-                <td><a href="{{ path('recomendacion_show', { 'id': recomendacion.id }) }}">{{ recomendacion.id }}</a></td>
-                <td>{{ recomendacion.recomendacion }}</td>
-                <td>{% if recomendacion.createdAt %}{{ recomendacion.createdAt|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ recomendacion.registro }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('recomendacion_show', { 'id': recomendacion.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('recomendacion_edit', { 'id': recomendacion.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <a class="btn btn-outline-info my-4" href="{{ path('registro_index') }}" role="button"><i class="fa fa-arrow-left"></i> Registros</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('recomendacion_new') }}">Create a new recomendacion</a>
-        </li>
-    </ul>
+    {% for recomendacion in recomendaciones %}
+        <div class="card my-4 text-muted">
+            <div class="card-body">
+                <p class="card-text lead">Para: <a href="{{ path('registro_show', {'slug' : recomendacion.registro.slug }) }}">{{ recomendacion.registro.nombre }} {{ recomendacion.registro.apaterno}} {{ recomendacion.registro.amaterno}}</a></p>
+                <h4>De: {{ recomendacion.registro.nombreProfesor }} <small>{{ recomendacion.registro.emailProfesor }}</small></h4>
+                <p class="card-text">{{ recomendacion.recomendacion|raw }}</p>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    {#<h1>Recomendacions list</h1>#}
+
+    {#<table>#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Recomendacion</th>#}
+                {#<th>Createdat</th>#}
+                {#<th>Registro</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for recomendacion in recomendaciones %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('recomendacion_show', { 'id': recomendacion.id }) }}">{{ recomendacion.id }}</a></td>#}
+                {#<td>{{ recomendacion.recomendacion }}</td>#}
+                {#<td>{% if recomendacion.createdAt %}{{ recomendacion.createdAt|date('Y-m-d') }}{% endif %}</td>#}
+                {#<td>{{ recomendacion.registro }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('recomendacion_show', { 'id': recomendacion.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('recomendacion_edit', { 'id': recomendacion.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('recomendacion_new') }}">Create a new recomendacion</a>#}
+        {#</li>#}
+    {#</ul>#}
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
 {% endblock %}
